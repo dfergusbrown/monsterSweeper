@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="/style.css" rel="stylesheet" >
+    <script defer src="script.js"></script>
 </head>
-<body>
-    
+<body class="container">
+    <div class="title">
+        <h1>Monster Sweeper</h1>
+    </div>
+    <div class="wrapper">
+        <div class="doorGrid"></div>
+    </div>
+    <div class="footer">
+            <button id="helpButton">?</button>
+            <ul id="instructions">
+                <li>left-click on any square to open a door</li>
+                <li>right-click to flag a door on suspicion of a monster</li>
+                <li>numbers indicate how many monsters are waiting behind the 8 adjacent squares</li>
+            </ul>
+    </div>
 </body>
 </html>
