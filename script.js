@@ -88,7 +88,7 @@ function checkAdjacentSquares(row, col) {
 renderSquares()
 
 function selectSquare(event) {
-    const tCell = event.target
+    const tCell = this
     flagging ? flagSquare(tCell) : revealSquare(tCell)
 }
 
@@ -176,9 +176,7 @@ function flagSquare(tCell) {
     const miniFlag = flagTemplate.cloneNode(true)
     miniFlag.style.fontSize = '20px'
 
-    if (tCell.firstChild) {
-        tCell.removeChild(tCell.firstChild)
-    } else {
+    tCell.firstChild ? 
+        tCell.removeChild(tCell.firstChild) :
         tCell.appendChild(miniFlag)
-    }
 }
