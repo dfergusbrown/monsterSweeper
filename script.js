@@ -6,6 +6,9 @@ const gameGrid = document.querySelector('.doorGrid')
 
 /* --- VARIABLES --- */
 let gridArray = []
+let numRows = 9
+let numCols = 9
+let numMonsters = 10
 
 /* --- EVENT LISTENERS --- */
 helpBtn.addEventListener('click', toggleHelp)
@@ -14,7 +17,6 @@ helpBtn.addEventListener('click', toggleHelp)
 /* --- FUNCTIONS --- */
 helpInst.style.display = 'none';
 function toggleHelp() {
-    console.log(helpInst.style.display)
     helpInst.style.display === 'none' ? 
         helpInst.style.display = 'block' :
         helpInst.style.display = 'none';
@@ -29,18 +31,19 @@ function renderSquares() {
         }
     }
     // Drop in Monsters
-    for ( let mon = 10; mon > 0; mon--) {
-        const randomN1 = Math.floor(Math.random() * 5)
-        const randomN2 = Math.floor(Math.random() * 5)
+    for ( let mon = numMonsters; mon > 0; mon--) {
+        const randomN1 = Math.floor(Math.random() * numRows)
+        const randomN2 = Math.floor(Math.random() * numCols)
         gridArray[randomN1][randomN2] === 1 ? mon++ :
             gridArray[randomN1][randomN2] = 1
         // console.log(gridArray)
     }
     // Use gridArray to designate monster cells
-    for (let row = 0; row < 9; row++) {
-        for (let col = 0; col < 9; col++) {
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
         const cell = document.createElement('div');
         cell.classList.add('cell')
+        cell.id = `${row}-${col}`
         gameGrid.appendChild(cell)
         cell.dataset.cellID = `${row}-${col}`
         
@@ -49,22 +52,21 @@ function renderSquares() {
         gridArray[row][col] === 1 ? // set monster cell
             cell.dataset.monster = true : null
         
-        let numAdj = checkAdjacentSquares(row, col)
-        if (cell.dataset.monster) {
-            cell.textContent = 'M'
-        } else if (numAdj) {
-            cell.dataset.number = checkAdjacentSquares(row, col)
-            cell.textContent = cell.dataset.number
+        // set number cell data
+        let numAdj = checkAdjacentSquares(row, col) 
+        if (!cell.dataset.monster && numAdj) {
+            cell.dataset.number = numAdj
+        } else if (!cell.dataset.monster) {
+            gridArray[row][col] = null
         }
 
         }
     }
-
+    console.log(gridArray)
 }
 
 function checkAdjacentSquares(row, col) {
     let numTotal = 0
-    console.log(row, col)
     //horizontal
     if (row !== 0 && gridArray[row - 1][col] === 1) numTotal++
     if (row !== 8 && gridArray[row + 1][col] === 1) numTotal++
@@ -84,8 +86,49 @@ renderSquares()
 
 function selectSquare(event) {
     const tCell = event.target
-    tCell.dataset.monster ? 
-        tCell.style.backgroundColor = 'red':
+    revealSquare(tCell)
+}
+
+function revealSquare(tCell) {
+
+    if (tCell.dataset.monster) {
+        tCell.style.backgroundColor = 'red'
+        tCell.textContent = 'M'
+    } else if (tCell.dataset.number) {
         tCell.style.backgroundColor = 'grey'
-    
+        tCell.textContent = tCell.dataset.number
+    } else {
+        tCell.style.backgroundColor = 'grey'
+        tCell.dataset.revealed = true
+        revealAdjBlanks(tCell)
+    }
+}
+
+function revealAdjBlanks(tCell) {
+    const splitId = tCell.dataset.cellID.split('-')
+    const row = Number(splitId[0])
+    const col = Number(splitId[1])
+
+    //vertical
+    if (row > 0 && gridArray[row - 1][col] === null 
+        && !fetchElement((row-1), col).dataset.revealed) {
+            revealSquare(fetchElement(row-1, col))
+        }
+    if (row < 8 && gridArray[row + 1][col] === null
+        && !fetchElement((row+1), col).dataset.revealed) {
+            revealSquare(fetchElement(row+1, col))
+        }
+    // //horizontal
+    if (col > 0 && gridArray[row][col - 1] === null
+        && !fetchElement(row, col-1).dataset.revealed) {
+            revealSquare(fetchElement(row, col-1))
+    }
+    if (col < 8 && gridArray[row][col + 1] === null
+        && !fetchElement(row, col+1).dataset.revealed) {
+            revealSquare(fetchElement(row, col+1))
+        }
+}
+
+function fetchElement(mrow, mcol) {
+    return document.getElementById(`${mrow}-${mcol}`)
 }
