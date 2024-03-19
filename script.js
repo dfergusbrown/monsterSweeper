@@ -110,23 +110,40 @@ function revealAdjBlanks(tCell) {
     const col = Number(splitId[1])
 
     //vertical
-    if (row > 0 && gridArray[row - 1][col] === null 
+    if (row > 0 && !gridArray[row - 1][col] 
         && !fetchElement((row-1), col).dataset.revealed) {
             revealSquare(fetchElement(row-1, col))
-        }
-    if (row < 8 && gridArray[row + 1][col] === null
+    }
+    if (row < 8 && !gridArray[row + 1][col]
         && !fetchElement((row+1), col).dataset.revealed) {
             revealSquare(fetchElement(row+1, col))
-        }
-    // //horizontal
-    if (col > 0 && gridArray[row][col - 1] === null
+    }
+    //horizontal
+    if (col > 0 && !gridArray[row][col - 1]
         && !fetchElement(row, col-1).dataset.revealed) {
             revealSquare(fetchElement(row, col-1))
     }
-    if (col < 8 && gridArray[row][col + 1] === null
+    if (col < 8 && !gridArray[row][col + 1]
         && !fetchElement(row, col+1).dataset.revealed) {
             revealSquare(fetchElement(row, col+1))
-        }
+    }
+    //diagonal
+    if (row > 0 && col > 0 && !gridArray[row - 1][col - 1]
+        && !fetchElement(row-1, col-1).dataset.revealed) {
+            revealSquare(fetchElement(row-1, col-1))
+    }
+    if (row < 8 && col < 8 && !gridArray[row+1][col + 1]
+        && !fetchElement(row+1, col+1).dataset.revealed) {
+            revealSquare(fetchElement(row+1, col+1))
+    }
+    if (row < 8 && col > 0 && !gridArray[row+1][col - 1]
+        && !fetchElement(row+1, col-1).dataset.revealed) {
+            revealSquare(fetchElement(row+1, col-1))
+    }
+    if (row > 0 && col < 8 && !gridArray[row-1][col + 1]
+        && !fetchElement(row-1, col+1).dataset.revealed) {
+            revealSquare(fetchElement(row-1, col+1))
+    }
 }
 
 function fetchElement(mrow, mcol) {
