@@ -5,6 +5,7 @@ const gameGrid = document.querySelector('.doorGrid')
 const flagBtn = document.querySelector('#flagButton')
 const flagStyle = document.querySelector('.material-symbols-outlined')
 const flagTemplate = document.querySelector('#flag')
+
 /* --- VARIABLES --- */
 let gridArray = []
 let numRows = 9
@@ -45,12 +46,12 @@ function renderSquares() {
         for (let col = 0; col < numCols; col++) {
         const cell = document.createElement('div');
         cell.classList.add('cell')
+        cell.classList.add('wrapper')
         cell.id = `${row}-${col}`
         gameGrid.appendChild(cell)
         cell.dataset.cellID = `${row}-${col}`
         
         cell.addEventListener('click', selectSquare)
-        cell.addEventListener('auxclick', flagSquare)
         
         gridArray[row][col] === 1 ? // set monster cell
             cell.dataset.monster = true : null
@@ -93,10 +94,10 @@ function selectSquare(event) {
 }
 
 function revealSquare(tCell) {
-
     if (tCell.dataset.monster) {
         tCell.style.backgroundColor = 'red'
-        tCell.textContent = 'M'
+        // tCell.textContent = 'M'
+        insertMonster(tCell)
     } else if (tCell.dataset.number) {
         tCell.style.backgroundColor = 'grey'
         tCell.textContent = tCell.dataset.number
@@ -105,6 +106,13 @@ function revealSquare(tCell) {
         tCell.dataset.revealed = true
         revealAdjBlanks(tCell)
     }
+}
+
+function insertMonster(tCell) {
+    const monster = document.getElementById('mikeW').cloneNode()
+    monster.style.display = 'block'
+    console.log(monster)
+    tCell.appendChild(monster)
 }
 
 function revealAdjBlanks(tCell) {
@@ -153,19 +161,6 @@ function fetchElement(mrow, mcol) {
     return document.getElementById(`${mrow}-${mcol}`)
 }
 
-function flagSquare(event) {
-    const element = event.target
-    element.dataset.flagged = true
-
-    if(element.dataset.flagged) {
-        element.textContent = ''
-        element.addEventListener('click', selectSquare)
-    } else {
-        element.textContent = '?'
-        element.removeEventListener('click', selectSquare)
-    }
-}
-
 function toggleFlagging() {
     flagging ? flagging = false : flagging = true
     flagging ? flagStyle.style.color = 'red' :
@@ -175,6 +170,12 @@ function toggleFlagging() {
 function flagSquare(tCell) {
     const miniFlag = flagTemplate.cloneNode(true)
     miniFlag.style.fontSize = '20px'
+
+    // if(this.dataset.flagged) {
+    //     element.addEventListener('click', selectSquare)
+    // } else {
+    //     element.removeEventListener('click', selectSquare)
+    // }
 
     tCell.firstChild ? 
         tCell.removeChild(tCell.firstChild) :

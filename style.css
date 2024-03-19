@@ -57,6 +57,10 @@
   'opsz' 24
 }
 
+#mikeW, #sully {
+  display: none;
+}
+
 
 .footer { grid-area: footer; }
 
