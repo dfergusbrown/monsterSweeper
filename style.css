@@ -39,9 +39,24 @@
 
 .wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+#flagButton {
+  background-color: transparent;
+}
+
+.material-symbols-outlined {
+  color: black;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
 
 .footer { grid-area: footer; }
 

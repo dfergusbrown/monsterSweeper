@@ -2,16 +2,19 @@
 const helpBtn = document.querySelector('#helpButton')
 const helpInst = document.querySelector('#instructions')
 const gameGrid = document.querySelector('.doorGrid')
-
-
+const flagBtn = document.querySelector('#flagButton')
+const flagStyle = document.querySelector('.material-symbols-outlined')
+const flagTemplate = document.querySelector('#flag')
 /* --- VARIABLES --- */
 let gridArray = []
 let numRows = 9
 let numCols = 9
 let numMonsters = 10
+let flagging = false
 
 /* --- EVENT LISTENERS --- */
 helpBtn.addEventListener('click', toggleHelp)
+flagBtn.addEventListener('click', toggleFlagging)
 
 
 /* --- FUNCTIONS --- */
@@ -86,7 +89,7 @@ renderSquares()
 
 function selectSquare(event) {
     const tCell = event.target
-    revealSquare(tCell)
+    flagging ? flagSquare(tCell) : revealSquare(tCell)
 }
 
 function revealSquare(tCell) {
@@ -160,5 +163,22 @@ function flagSquare(event) {
     } else {
         element.textContent = '?'
         element.removeEventListener('click', selectSquare)
+    }
+}
+
+function toggleFlagging() {
+    flagging ? flagging = false : flagging = true
+    flagging ? flagStyle.style.color = 'red' :
+        flagStyle.style.color = 'black'
+}
+
+function flagSquare(tCell) {
+    const miniFlag = flagTemplate.cloneNode(true)
+    miniFlag.style.fontSize = '20px'
+
+    if (tCell.firstChild) {
+        tCell.removeChild(tCell.firstChild)
+    } else {
+        tCell.appendChild(miniFlag)
     }
 }
