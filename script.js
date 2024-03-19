@@ -36,7 +36,6 @@ function renderSquares() {
         const randomN2 = Math.floor(Math.random() * numCols)
         gridArray[randomN1][randomN2] === 1 ? mon++ :
             gridArray[randomN1][randomN2] = 1
-        // console.log(gridArray)
     }
     // Use gridArray to designate monster cells
     for (let row = 0; row < numRows; row++) {
@@ -48,6 +47,7 @@ function renderSquares() {
         cell.dataset.cellID = `${row}-${col}`
         
         cell.addEventListener('click', selectSquare)
+        cell.addEventListener('auxclick', flagSquare)
         
         gridArray[row][col] === 1 ? // set monster cell
             cell.dataset.monster = true : null
@@ -148,4 +148,17 @@ function revealAdjBlanks(tCell) {
 
 function fetchElement(mrow, mcol) {
     return document.getElementById(`${mrow}-${mcol}`)
+}
+
+function flagSquare(event) {
+    const element = event.target
+    element.dataset.flagged = true
+
+    if(element.dataset.flagged) {
+        element.textContent = ''
+        element.addEventListener('click', selectSquare)
+    } else {
+        element.textContent = '?'
+        element.removeEventListener('click', selectSquare)
+    }
 }
