@@ -21,6 +21,7 @@
   margin: 0;
   background-image: url("./images/concrete.jpeg");
   background-repeat: repeat;
+  font-family: VTKS SMASH Regular;
 }
 .policeLight {
   margin: 0;
@@ -31,6 +32,8 @@
   margin: 0;
   background-image: url("./images/concrete.jpeg");
   background-repeat: repeat;
+  font-family: Tippa;
+  font-size: .75em;
 }
 
 .doorGrid {
@@ -100,6 +103,11 @@
 }
 #cdaAgent:hover {
   cursor: pointer;
+  transform: translateY(3px);
+  background-color: rgba(0, 0, 0,0.1);
+}
+#cdaAgent:active {
+  transform: translateY(5px);
 }
  
 .footer { grid-area: footer; }
@@ -119,6 +127,24 @@
 #instructions {
     display: none;
 }
+
+/* WEB FONT */
+
+@font-face {
+  font-family: VTKS SMASH Regular;
+  src: url(./fonts/vtks-smash/VTKS\ SMASH.ttf);
+}
+
+@font-face {
+  font-family: Tippa;
+  src: url(./fonts/tippa/Tippa.ttf);
+}
+
+@font-face {
+  font-family: Computer7;
+  src: url(./fonts/computer-7/computer_7.ttf);
+}
+/* MEDIA QUERIES */
 
 @media only screen and (min-width: 450px) {
   .cell {
