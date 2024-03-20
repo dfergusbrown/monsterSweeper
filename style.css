@@ -43,9 +43,16 @@
     justify-content: center;
     align-items: center;
 }
+.wrapper2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-#flagButton {
+#flagButton, #play-reset {
   background-color: transparent;
+  padding: 5px 10px;
+  margin: 5px 10px;
 }
 
 .material-symbols-outlined {
@@ -57,10 +64,13 @@
   'opsz' 24
 }
 
-#mikeW, #sully {
+#mikeW, #sully, #door1 {
   display: none;
 }
 
+#door1 {
+  height: 50px;
+}
 
 .footer { grid-area: footer; }
 

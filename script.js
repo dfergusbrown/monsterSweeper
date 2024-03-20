@@ -5,6 +5,7 @@ const gameGrid = document.querySelector('.doorGrid')
 const flagBtn = document.querySelector('#flagButton')
 const flagStyle = document.querySelector('.material-symbols-outlined')
 const flagTemplate = document.querySelector('#flag')
+const resetButton = document.querySelector('#play-reset')
 
 /* --- VARIABLES --- */
 let gridArray = []
@@ -16,7 +17,7 @@ let flagging = false
 /* --- EVENT LISTENERS --- */
 helpBtn.addEventListener('click', toggleHelp)
 flagBtn.addEventListener('click', toggleFlagging)
-
+resetButton.addEventListener('click', resetGame)
 
 /* --- FUNCTIONS --- */
 helpInst.style.display = 'none';
@@ -24,6 +25,11 @@ function toggleHelp() {
     helpInst.style.display === 'none' ? 
         helpInst.style.display = 'block' :
         helpInst.style.display = 'none';
+}
+
+function resetGame() {
+    clearBoard()
+    renderSquares()
 }
 
 function renderSquares() {
@@ -49,6 +55,9 @@ function renderSquares() {
         cell.classList.add('wrapper')
         cell.id = `${row}-${col}`
         gameGrid.appendChild(cell)
+        const door = document.getElementById('door1').cloneNode()
+        door.style.display = 'block'
+        cell.appendChild(door)
         cell.dataset.cellID = `${row}-${col}`
         
         cell.addEventListener('click', selectSquare)
@@ -67,6 +76,12 @@ function renderSquares() {
         }
     }
     console.log(gridArray)
+}
+
+function clearBoard() {
+    while (gameGrid.firstChild) {
+        gameGrid.removeChild(gameGrid.firstChild)
+    }
 }
 
 function checkAdjacentSquares(row, col) {
@@ -94,6 +109,7 @@ function selectSquare(event) {
 }
 
 function revealSquare(tCell) {
+    tCell.removeChild(tCell.firstChild)
     if (tCell.dataset.monster) {
         tCell.style.backgroundColor = 'red'
         // tCell.textContent = 'M'
