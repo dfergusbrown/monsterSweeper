@@ -28,6 +28,13 @@ function toggleHelp() {
         helpInst.style.display = 'none';
 }
 
+function juniorDetective() {
+    
+    gameGrid.appendChild()
+}
+
+// SETTING UP THE BOARD
+
 function resetGame() {
     clearBoard()
     renderSquares()
@@ -104,7 +111,8 @@ function checkAdjacentSquares(row, col) {
     return numTotal
 }
 
-renderSquares()
+
+// BOARD EVENTS
 
 function selectSquare(event) {
     const tCell = this
@@ -118,10 +126,8 @@ function revealSquare(tCell) {
         insertMonster(tCell)
         gameOver()
     } else if (tCell.dataset.number) {
-        tCell.style.backgroundColor = 'grey'
         tCell.textContent = tCell.dataset.number
     } else {
-        tCell.style.backgroundColor = 'grey'
         tCell.dataset.revealed = true
         revealAdjBlanks(tCell)
     }

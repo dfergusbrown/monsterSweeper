@@ -77,6 +77,10 @@
   height: 50px;
 }
 
+#cdaAgent {
+  height: 250px
+}
+
 .footer { grid-area: footer; }
 
 #helpButton {
