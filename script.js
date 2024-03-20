@@ -55,7 +55,7 @@ function renderSquares() {
         cell.classList.add('wrapper')
         cell.id = `${row}-${col}`
         gameGrid.appendChild(cell)
-        const door = document.getElementById('door1').cloneNode()
+        const door = document.getElementById('door1').cloneNode(true)
         door.style.display = 'block'
         cell.appendChild(door)
         cell.dataset.cellID = `${row}-${col}`
@@ -79,6 +79,7 @@ function renderSquares() {
 }
 
 function clearBoard() {
+    gridArray = []
     while (gameGrid.firstChild) {
         gameGrid.removeChild(gameGrid.firstChild)
     }
@@ -187,13 +188,18 @@ function flagSquare(tCell) {
     const miniFlag = flagTemplate.cloneNode(true)
     miniFlag.style.fontSize = '20px'
 
-    // if(this.dataset.flagged) {
-    //     element.addEventListener('click', selectSquare)
-    // } else {
-    //     element.removeEventListener('click', selectSquare)
-    // }
+    console.log(tCell)
+    tCell.removeChild(tCell.firstChild)
+    console.log(tCell.dataset.flagged)
 
-    tCell.firstChild ? 
-        tCell.removeChild(tCell.firstChild) :
+    if (tCell.dataset.flagged === "true") {
+        const door = document.getElementById('door1').cloneNode(true)
+        door.style.display = 'block'
+        tCell.appendChild(door)
+        tCell.dataset.flagged = "false"
+    } else {
         tCell.appendChild(miniFlag)
+        tCell.dataset.flagged = "true"
+    }
+
 }
