@@ -7,7 +7,7 @@
     grid-auto-flow: row;
     grid-template-areas:
       "title"
-      "doorGrid"
+      "playArea"
       "footer";
     margin: 0;
     background-color: aquamarine;
@@ -15,12 +15,15 @@
   }
   
 .title {
-    grid-area: title;
-    text-align: center;
+  grid-area: title;
+  text-align: center;
+}
+
+.playArea {
+  grid-area: playArea;
 }
 
 .doorGrid {
-    grid-area: doorGrid;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     gap: 0px 0px;
@@ -31,11 +34,12 @@
 }
 
 .cell {
-    height: 20px;
-    width: 20px;
+    height: 8.5vw;
+    width: 8.5vw;
     background-color: white;
     border: solid 3px white;
     text-align: center;
+    font-size: 1.5em;
 }
 
 .wrapper {
@@ -80,7 +84,7 @@
 #cdaAgent {
   height: 250px
 }
-
+ 
 .footer { grid-area: footer; }
 
 #helpButton {
@@ -94,18 +98,37 @@
     display: none;
 }
 
-  @media only screen and (min-width: 1024px) {
-    .container {  
-        display: grid; 
-        grid-template-columns: 0.5fr 2fr 0.5fr; 
-        grid-template-rows: 0.4fr 2fr 0.6fr; 
-        gap: 0px 0px; 
-        grid-template-areas: 
-          "title . ."
-          ". doorGrid ."
-          "footer . .";
-        margin: 0;
-        background-color: aquamarine;
-        height: 100vh;
-    }
+@media only screen and (min-width: 450px) {
+  .cell {
+    height: 50px;
+    width: 50px;
+  }
+
+  #play-reset {
+    font-size: 2em;
+  }
+  #flagButton {
+    height: 50px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .cell {
+    height: 60px;
+    width: 60px;
+  }
+  
+  .container {  
+      display: grid; 
+      grid-template-columns: 0.5fr 2fr 0.5fr; 
+      grid-template-rows: 0.4fr 2fr 0.6fr; 
+      gap: 0px 0px; 
+      grid-template-areas: 
+        "title title title"
+        ". playArea ."
+        "footer footer footer";
+      margin: 0;
+      background-color: aquamarine;
+      height: 100vh;
+  }
 }

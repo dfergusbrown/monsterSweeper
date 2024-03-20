@@ -1,5 +1,5 @@
 /* --- CONSTANTS --- */
-const helpBtn = document.querySelector('#helpButton')
+// const helpBtn = document.querySelector('#helpButton')
 const helpInst = document.querySelector('#instructions')
 const gameGrid = document.querySelector('.doorGrid')
 const flagBtn = document.querySelector('#flagButton')
@@ -16,17 +16,17 @@ let numMonsters = 10
 let flagging = false
 
 /* --- EVENT LISTENERS --- */
-helpBtn.addEventListener('click', toggleHelp)
+// helpBtn.addEventListener('click', toggleHelp)
 flagBtn.addEventListener('click', toggleFlagging)
 resetButton.addEventListener('click', resetGame)
 
 /* --- FUNCTIONS --- */
-helpInst.style.display = 'none';
-function toggleHelp() {
-    helpInst.style.display === 'none' ? 
-        helpInst.style.display = 'block' :
-        helpInst.style.display = 'none';
-}
+// helpInst.style.display = 'none';
+// function toggleHelp() {
+//     helpInst.style.display === 'none' ? 
+//         helpInst.style.display = 'block' :
+//         helpInst.style.display = 'none';
+// }
 
 function juniorDetective() {
     
@@ -36,11 +36,12 @@ function juniorDetective() {
 // SETTING UP THE BOARD
 
 function resetGame() {
+    resetButton.textContent = 'Reset'
     clearBoard()
     renderSquares()
     policeLights.forEach(el => el.classList.add('hide'))
 }
-
+resetGame()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
