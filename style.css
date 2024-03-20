@@ -1,41 +1,51 @@
 
 .container {  
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 1.6fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "title"
-      "playArea"
-      "footer";
-    margin: 0;
-    background-color: aquamarine;
-    height: 100vh;
-  }
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr 1.6fr .6fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "title"
+    "playArea"
+    "footer";
+  margin: 0;
+  background-color: darkslategrey;
+  color: black;
+  height: 100vh;
+}
   
 .title {
   grid-area: title;
   text-align: center;
+  margin: 0;
+  background-image: url("./images/concrete.jpeg");
+  background-repeat: repeat;
+}
+.policeLight {
+  margin: 0;
 }
 
 .playArea {
   grid-area: playArea;
+  margin: 0;
+  background-image: url("./images/concrete.jpeg");
+  background-repeat: repeat;
 }
 
 .doorGrid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     gap: 0px 0px;
-    margin: 20px;
+    margin: 10px;
     height: fit-content;
     width: fit-content;
     border: solid 5px black;
 }
 
 .cell {
-    height: 8.5vw;
-    width: 8.5vw;
+    height: 7vw;
+    width: 7vw;
     background-color: white;
     border: solid 3px white;
     text-align: center;
@@ -54,10 +64,14 @@
   align-items: center;
 }
 
-#flagButton, #play-reset {
-  background-color: transparent;
+#flagButton {
+  background-color: yellow;
   padding: 5px 10px;
   margin: 5px 10px;
+}
+
+#play-reset {
+  background-color: red;
 }
 
 .material-symbols-outlined {
@@ -78,14 +92,22 @@
 }
 
 #door1 {
-  height: 50px;
+  max-height: 50px;
 }
 
 #cdaAgent {
-  height: 250px
+  height: 300px;
+}
+#cdaAgent:hover {
+  cursor: pointer;
 }
  
 .footer { grid-area: footer; }
+
+.concreteFloor {
+  background-color: #00041f;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+}
 
 #helpButton {
     margin: 30px;
@@ -100,8 +122,8 @@
 
 @media only screen and (min-width: 450px) {
   .cell {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
   }
 
   #play-reset {
@@ -110,12 +132,19 @@
   #flagButton {
     height: 50px;
   }
+
+  .break-wrapper {
+    flex-direction: row;
+  }
+  .welcomeAgent {
+    flex-direction: row;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
   .cell {
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
   }
   
   .container {  
@@ -125,10 +154,14 @@
       gap: 0px 0px; 
       grid-template-areas: 
         "title title title"
-        ". playArea ."
+        "playArea playArea playArea"
         "footer footer footer";
       margin: 0;
-      background-color: aquamarine;
       height: 100vh;
+  }
+
+  .doorGrid {
+    justify-content:flex-start;
+    margin-left: 50px;
   }
 }

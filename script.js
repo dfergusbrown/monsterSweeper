@@ -7,6 +7,8 @@ const flagStyle = document.querySelector('.material-symbols-outlined')
 const flagTemplate = document.querySelector('#flag')
 const resetButton = document.querySelector('#play-reset')
 const policeLights = document.querySelectorAll('.policeLight')
+const welcomeAgent = document.querySelector('#welcomeAgent')
+const initStart = document.querySelector('#initialStart')
 
 /* --- VARIABLES --- */
 let gridArray = []
@@ -19,6 +21,7 @@ let flagging = false
 // helpBtn.addEventListener('click', toggleHelp)
 flagBtn.addEventListener('click', toggleFlagging)
 resetButton.addEventListener('click', resetGame)
+initStart.addEventListener('click', resetGame)
 
 /* --- FUNCTIONS --- */
 // helpInst.style.display = 'none';
@@ -28,20 +31,20 @@ resetButton.addEventListener('click', resetGame)
 //         helpInst.style.display = 'none';
 // }
 
-function juniorDetective() {
-    
-    gameGrid.appendChild()
-}
-
 // SETTING UP THE BOARD
 
 function resetGame() {
+    gameGrid.classList.remove('hide')
+    welcomeAgent.classList.add('hide')
+    resetButton.classList.remove('hide')
+    flagBtn.classList.remove('hide')
+
     resetButton.textContent = 'Reset'
     clearBoard()
     renderSquares()
     policeLights.forEach(el => el.classList.add('hide'))
 }
-resetGame()
+// resetGame()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -123,7 +126,7 @@ function selectSquare(event) {
 function revealSquare(tCell) {
     tCell.removeChild(tCell.firstChild)
     if (tCell.dataset.monster) {
-        tCell.style.backgroundColor = 'red'
+        tCell.style.backgroundColor = 'blue'
         insertMonster(tCell)
         gameOver()
     } else if (tCell.dataset.number) {
