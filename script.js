@@ -79,6 +79,8 @@ function resetGame() {
     welcomeAgent.classList.add('hide')
     infoBar.classList.remove('hide')
     speech.classList.add("hide")
+    mikeW.classList.add('hide')
+    joke.classList.add('hide')
 
     resetButton.textContent = 'Reset'
     clearBoard()
@@ -162,7 +164,7 @@ function checkAdjacentSquares(row, col) {
     if (col !== 0 && row !== 8 && gridArray[row+1][col-1] === 1) numTotal++
     if (row !== 0 && col !== 8 && gridArray[row-1][col+1] === 1) numTotal++
     if (row !== 8 && col !== 8 && gridArray[row+1][col+1] === 1) numTotal++
-    
+
     return numTotal
 }
 
@@ -250,6 +252,8 @@ function revealAdjBlanks(tCell) {
         && !fetchElement(row-1, col+1).dataset.revealed) {
             revealSquare(fetchElement(row-1, col+1))
     }
+
+    gameWinCheck() ? gameWinMsg() : null
 }
 
 function fetchElement(mrow, mcol) {
@@ -285,9 +289,11 @@ function flagSquare(tCell) {
 }
 
 function gameWinCheck() {
-    return !cellArray.some(el => {
+    const win = !cellArray.some(el => {
         return !el.dataset.monster && !el.dataset.revealed && !el.dataset.uncovered
     })
+    console.log(win)
+    return win
 }
 
 function gameWinMsg() {
