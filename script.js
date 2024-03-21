@@ -3,6 +3,7 @@
 const helpInst = document.querySelector('#instructions')
 const container = document.querySelector('.container')
 const gameGrid = document.querySelector('.doorGrid')
+const doorTemp = document.querySelector('#door1')
 const flagBtn = document.querySelector('#flagButton')
 const flagStyle = document.querySelector('.material-symbols-outlined')
 const flagTemplate = document.querySelector('#flag')
@@ -92,6 +93,8 @@ function resetGame() {
     childCountFlags()
 }
 
+resetGame()
+
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -118,8 +121,8 @@ function renderSquares() {
         gameGrid.appendChild(cell)
 
         // Add DOOR
-        const door = document.getElementById('door1').cloneNode(true)
-        door.style.display = 'block'
+        const door = doorTemp.cloneNode(true)
+        door.classList.remove('hide')
         cell.appendChild(door)
         cell.dataset.cellID = `${row}-${col}`
         
@@ -135,7 +138,6 @@ function renderSquares() {
         } else if (!cell.dataset.monster) {
             gridArray[row][col] = null
         }
-
 
         cellArray.push(cell)
         }
