@@ -10,6 +10,8 @@ const policeLights = document.querySelectorAll('.policeLight')
 const welcomeAgent = document.querySelector('#welcomeAgent')
 const initStart = document.querySelector('#initialStart')
 const childCount = document.querySelector('#childCount')
+const infoBar = document.querySelector('.infobar')
+const cautionTape = document.querySelector('#cautionTape')
 
 /* --- VARIABLES --- */
 let gridArray = []
@@ -38,8 +40,7 @@ initStart.addEventListener('click', resetGame)
 function resetGame() {
     gameGrid.classList.remove('hide')
     welcomeAgent.classList.add('hide')
-    resetButton.classList.remove('hide')
-    flagBtn.classList.remove('hide')
+    infoBar.classList.remove('hide')
 
     resetButton.textContent = 'Reset'
     clearBoard()
@@ -215,19 +216,19 @@ function toggleFlagging() {
 function flagSquare(tCell) {
     const miniFlag = flagTemplate.cloneNode(true)
     miniFlag.style.fontSize = '20px'
+    const caution = cautionTape.cloneNode(true)
 
-    console.log(tCell)
-    tCell.removeChild(tCell.firstChild)
-    console.log(tCell.dataset.flagged)
+    // tCell.removeChild(tCell.firstChild)
 
     if (tCell.dataset.flagged === "true") {
-        const door = document.getElementById('door1').cloneNode(true)
-        door.style.display = 'block'
-        tCell.appendChild(door)
+        tCell.removeChild(tCell.children[1])
+
         tCell.dataset.flagged = "false"
         flagsDown--
     } else {
-        tCell.appendChild(miniFlag)
+        caution.classList.remove('hide')
+        tCell.appendChild(caution)
+
         tCell.dataset.flagged = "true"
         flagsDown++
     }

@@ -54,6 +54,7 @@
     border: solid 3px white;
     text-align: center;
     font-size: 1.5em;
+    position: relative;
 }
 
 .wrapper {
@@ -97,10 +98,6 @@
   'opsz' 24
 }
 
-#mikeW, #sully, #door1 {
-  display: none;
-}
-
 .hide {
   display: none;
 }
@@ -108,6 +105,14 @@
 #door1 {
   max-height: 50px;
 }
+
+#cautionTape {
+  height: 10px;
+  z-index: 1;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
 
 #cdaAgent {
   height: 300px;
