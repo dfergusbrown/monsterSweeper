@@ -17,6 +17,7 @@ const childCount = document.querySelector('#childCount')
 const infoBar = document.querySelector('.infobar')
 const cautionTape = document.querySelector('#cautionTape')
 const msgArea = document.querySelector('.msgArea')
+const steven = document.getElementById('child')
 
 /* --- VARIABLES --- */
 let gridArray = []
@@ -58,7 +59,7 @@ function resetGame() {
     childCountFlags()
 }
 resetGame()
-
+gameOver()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -152,7 +153,7 @@ function revealSquare(tCell) {
     tCell.removeChild(tCell.firstChild)
     if (tCell.dataset.monster) {
         tCell.style.backgroundColor = 'blue'
-        insertMonster(tCell)
+        insertChildSq(tCell)
         gameOver()
     } else if (tCell.dataset.number) {
         tCell.textContent = tCell.dataset.number
@@ -164,10 +165,10 @@ function revealSquare(tCell) {
     gameWinCheck() ? gameWinMsg() : null
 }
 
-function insertMonster(tCell) {
-    const monster = document.getElementById('mikeW').cloneNode()
-    monster.style.display = 'block'
-    tCell.appendChild(monster)
+function insertChildSq(tCell) {
+    const child = steven.cloneNode()
+    child.style.display = 'block'
+    tCell.appendChild(child)
 }
 
 function gameOver() {

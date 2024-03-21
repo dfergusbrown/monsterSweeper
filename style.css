@@ -41,15 +41,28 @@
 
 .swat {
   height: 150px;
+  position: absolute;
 }
+#swat1 {
+  top: 10%;
+  z-index: 1;
+  animation: swat1 .5s linear 0s 1;
+}
+@keyframes swat1 {
+  from {transform: translatey(-200px);}
+}
+
 #swat2 {
   transform: scalex(-1);
-  position: absolute;
   bottom: 0;
   left: 0;
   height: 400px;
   margin: 20px;
   z-index: 1;
+  animation: swat2 .5s linear 0s 1;
+}
+@keyframes swat2 {
+  from {transform: translatex(-200px) scalex(-1);}
 }
 
 #alert2319 {
@@ -112,6 +125,7 @@
   display: flex;
   justify-content: space-between;
   width: 80%;
+  text-align: right;
 }
 
 #childCount {
