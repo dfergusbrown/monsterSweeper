@@ -1,6 +1,7 @@
 /* --- CONSTANTS --- */
 // const helpBtn = document.querySelector('#helpButton')
 const helpInst = document.querySelector('#instructions')
+const container = document.querySelector('.container')
 const gameGrid = document.querySelector('.doorGrid')
 const flagBtn = document.querySelector('#flagButton')
 const flagStyle = document.querySelector('.material-symbols-outlined')
@@ -8,13 +9,18 @@ const flagTemplate = document.querySelector('#flag')
 const resetButton = document.querySelector('#play-reset')
 const policeLights = document.querySelectorAll('.policeLight')
 const welcomeAgent = document.querySelector('#welcomeAgent')
+const cdaAgent = document.querySelector('.cdaAgent')
+const swatTeam = document.querySelectorAll('.swat')
+const alert2319 = document.querySelector('#alert2319')
 const initStart = document.querySelector('#initialStart')
 const childCount = document.querySelector('#childCount')
 const infoBar = document.querySelector('.infobar')
 const cautionTape = document.querySelector('#cautionTape')
+const msgArea = document.querySelector('.msgArea')
 
 /* --- VARIABLES --- */
 let gridArray = []
+let cellArray = []
 let numRows = 9
 let numCols = 9
 let numMonsters = 10
@@ -46,10 +52,13 @@ function resetGame() {
     clearBoard()
     renderSquares()
     policeLights.forEach(el => el.classList.add('hide'))
+    swatTeam.forEach(el => el.classList.add('hide'))
+    alert2319.classList.add('hide')
     flagsDown = 0
     childCountFlags()
 }
 resetGame()
+
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -68,11 +77,14 @@ function renderSquares() {
     // Use gridArray to designate monster cells
     for (let row = 0; row < numRows; row++) {
         for (let col = 0; col < numCols; col++) {
+        //Add CELL
         const cell = document.createElement('div');
         cell.classList.add('cell')
         cell.classList.add('wrapper')
         cell.id = `${row}-${col}`
         gameGrid.appendChild(cell)
+
+        // Add DOOR
         const door = document.getElementById('door1').cloneNode(true)
         door.style.display = 'block'
         cell.appendChild(door)
@@ -91,9 +103,12 @@ function renderSquares() {
             gridArray[row][col] = null
         }
 
+
+        cellArray.push(cell)
         }
     }
     console.log(gridArray)
+    // console.log(cellArray)
 }
 
 function clearBoard() {
@@ -141,10 +156,12 @@ function revealSquare(tCell) {
         gameOver()
     } else if (tCell.dataset.number) {
         tCell.textContent = tCell.dataset.number
+        tCell.dataset.uncovered = true
     } else {
         tCell.dataset.revealed = true
         revealAdjBlanks(tCell)
     }
+    gameWinCheck() ? gameWinMsg() : null
 }
 
 function insertMonster(tCell) {
@@ -157,8 +174,9 @@ function gameOver() {
     for (let i = 0; i < gameGrid.childNodes.length; i++) {
         gameGrid.childNodes[i].removeEventListener('click', selectSquare)
     }
-    console.log(policeLights)
-    policeLights.forEach(el => el.classList.remove('hide'))
+    policeLights.forEach(el => el.classList.remove('hide')) 
+    swatTeam.forEach(el => el.classList.remove('hide'))
+    alert2319.classList.remove('hide')
 }
 
 function revealAdjBlanks(tCell) {
@@ -233,4 +251,14 @@ function flagSquare(tCell) {
         flagsDown++
     }
     childCountFlags()
+}
+
+function gameWinCheck() {
+    return !cellArray.some(el => {
+        return !el.dataset.monster && !el.dataset.revealed && !el.dataset.uncovered
+    })
+}
+
+function gameWinMsg() {
+
 }

@@ -2,17 +2,19 @@
 .container {  
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.4fr 1.6fr .6fr;
+  grid-template-rows: 0.3fr 0.2fr 1.6fr .6fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "title"
+    "msgArea"
     "playArea"
     "footer";
   margin: 0;
   background-color: darkslategrey;
   color: black;
   height: 100vh;
+  position: relative;
 }
   
 .title {
@@ -26,6 +28,43 @@
 }
 .policeLight {
   margin: 0;
+}
+
+.msgArea {
+  grid-area: msgArea;
+  background-image: url("./images/concrete.jpeg");
+  background-repeat: repeat;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.swat {
+  height: 150px;
+}
+#swat2 {
+  transform: scalex(-1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 400px;
+  margin: 20px;
+  z-index: 1;
+}
+
+#alert2319 {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  z-index: 1;
+  font-family: VTKS SMASH Regular;
+  font-size: 4em;
+  animation: flyAcross 1s linear 0s infinite;
+}
+
+@keyframes flyAcross {
+  from {transform: translate(300px);}
+  to {transform: translate(-300px);}
 }
 
 .playArea {
@@ -51,7 +90,7 @@
     height: 7vw;
     width: 7vw;
     background-color: white;
-    border: solid 3px white;
+    border: solid 1px rgba(0, 0, 0,0.1);
     text-align: center;
     font-size: 1.5em;
     position: relative;
@@ -114,17 +153,18 @@
 }
 
 
-#cdaAgent {
+.cdaAgent {
   height: 300px;
 }
-#cdaAgent:hover {
+.cdaAgent:hover {
   cursor: pointer;
   transform: translateY(3px);
   background-color: rgba(0, 0, 0,0.1);
 }
-#cdaAgent:active {
+.cdaAgent:active {
   transform: translateY(5px);
 }
+
  
 .footer { grid-area: footer; }
 
