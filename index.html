@@ -9,19 +9,26 @@
     <script defer src="script.js"></script>
 </head>
 <body class="container">
-    <div class="title wrapper2">
-        <div><img class="hide policeLight" src="/icons/icons8-police-car-light-48.png" alt="police light icon"/></div>
+    <div class="title">
         <h2>CDA: Junior Detector</h2>
         <div><img class="hide policeLight" src="/icons/icons8-police-car-light-48.png" alt="police light icon"/></div>
     </div>
     <div class="playArea wrapper">
-        <div id="welcomeAgent" class="wrapper welcomeAgent">
+        <div id="welcomeAgent" class="wrapper2 welcomeAgent">
             <a id="initialStart"><img src="./icons/CDA_Agent_01_KHIII.png" id="cdaAgent"/></a>
             <div>
                 <p>Welcome to your first day of training, rookie.<br/> <br/> Put on your suit and let's get to work!</p>
             </div>
         </div>
-        <div class="doorGrid hide">
+            <div class="doorGrid hide">
+        </div>
+        <div class="infobar">
+            <div><p>C-flags left: <span id="childCount"></span></p></div>
+            <button id="flagButton" class="hide">
+                <span class="material-symbols-outlined" id="flag">
+                    flag</span>
+            </button>
+            <button class="hide" id="play-reset">Reset</button>
         </div>
 
     </div>
@@ -33,13 +40,6 @@
                 <li>right-click to flag a door on suspicion of a monster</li>
                 <li>numbers indicate how many monsters are waiting behind the 8 adjacent squares</li>
             </ul> -->
-            <div class="wrapper break-wrapper">
-                <button id="flagButton" class="hide">
-                    <span class="material-symbols-outlined" id="flag">
-                        flag</span>
-                </button>
-                <button class="hide" id="play-reset">Play</button>
-            </div>
     </div>
     <img src="./icons/door-svgrepo-com.svg" class="cell" id="door1" />
     <img src="./icons/icons8-monsters,-inc---mike.svg" id="mikeW"/>

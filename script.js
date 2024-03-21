@@ -9,12 +9,14 @@ const resetButton = document.querySelector('#play-reset')
 const policeLights = document.querySelectorAll('.policeLight')
 const welcomeAgent = document.querySelector('#welcomeAgent')
 const initStart = document.querySelector('#initialStart')
+const childCount = document.querySelector('#childCount')
 
 /* --- VARIABLES --- */
 let gridArray = []
 let numRows = 9
 let numCols = 9
 let numMonsters = 10
+let flagsDown = 0
 let flagging = false
 
 /* --- EVENT LISTENERS --- */
@@ -43,8 +45,10 @@ function resetGame() {
     clearBoard()
     renderSquares()
     policeLights.forEach(el => el.classList.add('hide'))
+    flagsDown = 0
+    childCountFlags()
 }
-// resetGame()
+resetGame()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -113,6 +117,11 @@ function checkAdjacentSquares(row, col) {
     if (row !== 8 && col !== 8 && gridArray[row+1][col+1] === 1) numTotal++
     
     return numTotal
+}
+
+function childCountFlags() {
+    let flagsRemaining = numMonsters - flagsDown
+    childCount.textContent = flagsRemaining
 }
 
 
@@ -216,9 +225,11 @@ function flagSquare(tCell) {
         door.style.display = 'block'
         tCell.appendChild(door)
         tCell.dataset.flagged = "false"
+        flagsDown--
     } else {
         tCell.appendChild(miniFlag)
         tCell.dataset.flagged = "true"
+        flagsDown++
     }
-
+    childCountFlags()
 }
