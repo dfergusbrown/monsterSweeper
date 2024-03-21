@@ -17,7 +17,36 @@ const childCount = document.querySelector('#childCount')
 const infoBar = document.querySelector('.infobar')
 const cautionTape = document.querySelector('#cautionTape')
 const msgArea = document.querySelector('.msgArea')
-const steven = document.getElementById('child')
+const steven = document.querySelector('#child')
+const mikeW = document.querySelector('#mikeW')
+const speech = document.querySelector('#speech')
+const joke = document.querySelector('#joke')
+const jokeArray = {
+    0: {
+        setup: "What do you call a dance party of giraffes in the middle of the street?",
+        punch: "A giraffic jam!"
+    },
+    1: {
+        setup: "What do you call a fake noodle?",
+        punch: "an impasta!"
+    },
+    2: {
+        setup: "Why can't bicycles stand on their own?",
+        punch: "they're two-tired..."
+    },
+    3: {
+        setup: "What color is the wind?",
+        punch: "Blew!"
+    },
+    4: {
+        setup: "What do you call a magician that lost his magic?",
+        punch: "Ian"
+    },
+    5: {
+        setup: "Did you hear about the monarch that was 12 in. tall?",
+        punch: "Terrible king.  Great ruler."
+    }
+}
 
 /* --- VARIABLES --- */
 let gridArray = []
@@ -27,6 +56,7 @@ let numCols = 9
 let numMonsters = 10
 let flagsDown = 0
 let flagging = false
+let jokeOfThePlay
 
 /* --- EVENT LISTENERS --- */
 // helpBtn.addEventListener('click', toggleHelp)
@@ -48,6 +78,7 @@ function resetGame() {
     gameGrid.classList.remove('hide')
     welcomeAgent.classList.add('hide')
     infoBar.classList.remove('hide')
+    speech.classList.add("hide")
 
     resetButton.textContent = 'Reset'
     clearBoard()
@@ -58,8 +89,7 @@ function resetGame() {
     flagsDown = 0
     childCountFlags()
 }
-resetGame()
-gameOver()
+
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -261,5 +291,19 @@ function gameWinCheck() {
 }
 
 function gameWinMsg() {
+    mikeW.classList.remove('hide')
+    joke.classList.remove("hide")
+    speech.classList.remove('hide')
+    getJokeOfThePlay()
+    console.log('joke number', jokeOfThePlay)
+    joke.textContent = jokeArray[jokeOfThePlay].setup
+    mikeW.addEventListener('click', sayPunchLine)
+}
 
+function getJokeOfThePlay() {
+    jokeOfThePlay = Math.floor(Math.random()*6)
+}
+
+function sayPunchLine() {
+    joke.textContent = jokeArray[jokeOfThePlay].punch
 }

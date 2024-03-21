@@ -80,6 +80,23 @@
   to {transform: translate(-300px);}
 }
 
+#mikeW {
+  height: 100px;
+  position: relative;
+  margin-right: 10px;
+}
+#speech {
+  height: 50px;
+  position: absolute;
+  left: 40%;
+}
+#joke {
+  font-family: Tippa;
+}
+.jokeWrap {
+  width: 40%;
+}
+
 .playArea {
   grid-area: playArea;
   margin: 0;
@@ -124,7 +141,7 @@
 .infobar {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 70%;
   text-align: right;
 }
 
@@ -140,6 +157,10 @@
 
 #play-reset {
   background-color: red;
+  border-radius: 50%;
+  margin: 10px;
+  height: 50px;
+  width: 50px;
 }
 
 .material-symbols-outlined {
