@@ -165,7 +165,7 @@
 }
 
 #cautionTape {
-  height: 10px;
+  height: clamp(10px, 2vmin, 20px);
   z-index: 1;
   position: absolute;
   transform: rotate(45deg);
@@ -272,7 +272,7 @@
     max-width: 60px;
   }
   #door1 {
-    max-height: 60px;
+    max-height: 80px;
   }
 
   #play-reset {
@@ -351,15 +351,15 @@
   }
 
   #door1 {
-    max-height: 60px;
+    width:8vmin;
   }
   #play-reset {
     width: 12vmin;
   }
   
   .cell {
-    height: 60px;
-    width: 60px;
+    width: 8vmin;
+    max-width: 80px;
   }
 
 }

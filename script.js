@@ -268,8 +268,6 @@ function toggleFlagging() {
 }
 
 function flagSquare(tCell) {
-    const miniFlag = flagTemplate.cloneNode(true)
-    miniFlag.style.fontSize = '20px'
     const caution = cautionTape.cloneNode(true)
 
     // tCell.removeChild(tCell.firstChild)
