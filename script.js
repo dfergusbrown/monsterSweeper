@@ -94,7 +94,6 @@ function resetGame() {
 }
 
 resetGame()
-
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {

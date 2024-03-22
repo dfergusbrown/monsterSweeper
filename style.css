@@ -2,7 +2,7 @@
 .container {  
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 0.2fr 1.8fr .6fr;
+  grid-template-rows: 0.3fr 0.2fr 1.8fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -11,6 +11,7 @@
     "playArea"
     "footer";
   margin: 0;
+  padding: 0;
   background-color: darkslategrey;
   color: black;
   height: 100vh;
@@ -26,7 +27,7 @@
   background-image: url("./images/concrete.jpeg");
   background-repeat: repeat;
   font-family: VTKS SMASH Regular;
-  font-size: 2em;
+  font-size: 6vmin;
 }
 .policeLight {
   margin-left: 40px;
@@ -39,6 +40,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  min-height: 20px;
 }
 
 .swat {
@@ -95,6 +97,7 @@
 }
 #joke {
   font-family: Tippa;
+  
 }
 .jokeWrap {
   width: 40%;
@@ -120,8 +123,8 @@
 }
 
 .cell {
-    height: 35px;
-    width: 35px;
+    height: auto;
+    width: 8vw;
     background-color: white;
     border: solid 1px rgba(0, 0, 0,0.1);
     text-align: center;
@@ -141,32 +144,6 @@
   align-items: center;
 }
 
-.infobar {
-  display: flex;
-  justify-content: space-between;
-  width: 70%;
-  text-align: right;
-  font-size: 15px;
-}
-
-#childCount {
-  font-size: 20px;
-}
-
-#flagButton {
-  background-color: yellow;
-  padding: 5px 10px;
-  margin: 5px 10px;
-}
-
-#play-reset {
-  background-color: red;
-  border-radius: 50%;
-  margin: 10px;
-  height: 50px;
-  width: 50px;
-}
-
 .material-symbols-outlined {
   color: black;
   font-variation-settings:
@@ -180,9 +157,7 @@
   display: none;
 }
 
-#door1 {
-  max-height: 50px;
-}
+
 
 #cautionTape {
   height: 10px;
@@ -205,12 +180,52 @@
 }
 
  
-.footer { grid-area: footer; }
+.footer { 
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .concreteFloor {
   background-color: #00041f;
   background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
   background-repeat: repeat;
+}
+
+.infobar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  text-align: right;
+  color: white;
+  font-size: 15px;
+  font-family: Tippa;
+}
+
+#childCount {
+  font-size: 20px;
+  border: dashed 2px whitesmoke;
+  padding: 5px;
+}
+
+#flagButton {
+  background-color: yellow;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  font-family: Tippa;
+  height: fit-content;
+}
+
+#play-reset {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 4vmin;
+  margin: 10px;
+  width: 15vw;
+  aspect-ratio: 1/1;
 }
 
 #helpButton {
@@ -244,22 +259,20 @@
 
 @media only screen and (min-width: 450px) {
   .container {
-    grid-template-rows: 0.3fr 0.2fr 1.8fr .8fr;
+    grid-template-rows: 0.8fr 0.4fr 2fr auto;
   }
   
   .cell {
-    height: 60px;
-    width: 60px;
+    width: 8vw;
     font-size: 30px;
   }
 
   .infobar {
     width: 60%;
+    height: 100%;
   }
   #play-reset {
-    font-size: 1.5em;
-    width: fit-content;
-    height: auto;
+    aspect-ratio: 1/1;
   }
 
   #flagButton {
@@ -295,12 +308,12 @@
 @media only screen and (min-width: 1024px) {
   
   .container {  
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 0.7fr 1.3fr 1.6fr;  
       grid-template-areas: 
-        "title title title title"
-        "playArea playArea msgArea msgArea"
-        "playArea playArea . .";
+        "title title title"
+        "msgArea msgArea msgArea"
+        "playArea playArea playArea";
   }
 
   .title {
@@ -322,8 +335,8 @@
   }
   
   .cell {
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
   }
 
 }
