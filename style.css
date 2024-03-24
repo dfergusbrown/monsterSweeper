@@ -263,17 +263,6 @@
   width: 20%;
 }
 
-#helpButton {
-    margin: 30px;
-    padding: 5px 10px;
-    font-size: 2em;
-    background-color: transparent;
-}
-
-#instructions {
-    display: none;
-}
-
 .hide {
   display: none;
 }
