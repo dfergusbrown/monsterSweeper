@@ -1,6 +1,5 @@
 /* --- CONSTANTS --- */
 // const helpBtn = document.querySelector('#helpButton')
-const helpInst = document.querySelector('#instructions')
 const container = document.querySelector('.container')
 const gameGrid = document.querySelector('.doorGrid')
 const doorTemp = document.querySelector('#door1')
@@ -62,19 +61,12 @@ let flagging = false
 let jokeOfThePlay
 
 /* --- EVENT LISTENERS --- */
-// helpBtn.addEventListener('click', toggleHelp)
 flagBtn.addEventListener('click', toggleFlagging)
 resetButton.addEventListener('click', resetGame)
 initStart.addEventListener('click', resetGame)
 iconBtn.addEventListener('click', iconRefReveal)
 
 /* --- FUNCTIONS --- */
-// helpInst.style.display = 'none';
-// function toggleHelp() {
-//     helpInst.style.display === 'none' ? 
-//         helpInst.style.display = 'block' :
-//         helpInst.style.display = 'none';
-// }
 
 // SETTING UP THE BOARD
 
@@ -142,8 +134,6 @@ function renderSquares() {
         cellArray.push(cell)
         }
     }
-    console.log(gridArray)
-    // console.log(cellArray)
 }
 
 function clearBoard() {
@@ -199,7 +189,6 @@ function revealSquare(tCell) {
         tCell.dataset.revealed = 'true'
         revealAdjBlanks(tCell)
     }
-    // console.log('revealSquare:', gameWinCheck())
     gameWinCheck() ? gameWinMsg() : null
 }
 
@@ -258,7 +247,6 @@ function revealAdjBlanks(tCell) {
         && !fetchElement(row-1, col+1).dataset.revealed) {
             revealSquare(fetchElement(row-1, col+1))
     }
-    // console.log('revealBlanks: ', gameWinCheck())
     gameWinCheck() ? gameWinMsg() : null
 }
 
@@ -274,8 +262,6 @@ function toggleFlagging() {
 
 function flagSquare(tCell) {
     const caution = cautionTape.cloneNode(true)
-
-    // tCell.removeChild(tCell.firstChild)
 
     if (tCell.dataset.flagged === "true") {
         tCell.removeChild(tCell.children[1])
@@ -300,8 +286,6 @@ function gameWinCheck() {
         return !el.dataset.monster && !el.dataset.revealed && !el.dataset.uncovered
 
     })
-    console.log(win)
-    console.log(findIssue)
     return win
 }
 
@@ -310,7 +294,6 @@ function gameWinMsg() {
     joke.classList.remove("hide")
     speech.classList.remove('hide')
     getJokeOfThePlay()
-    console.log('joke number', jokeOfThePlay)
     joke.textContent = jokeArray[jokeOfThePlay].setup
     mikeW.addEventListener('click', sayPunchLine)
 
