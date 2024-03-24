@@ -248,6 +248,7 @@
 
 #iconBtn {
   background-color: transparent;
+  color: white;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -260,7 +261,11 @@
   bottom: 0;
   right: 0;
   margin-bottom: 35px;
-  width: 20%;
+  width: 80%;
+  color: white;
+}
+.iconRefs a:link, .iconRefs a:visited {
+  color: white;
 }
 
 .hide {
@@ -333,6 +338,10 @@
   .welcomeAgent {
     flex-direction: row;
   }
+
+  .iconRefs {
+    width: 15%;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -393,6 +402,22 @@
     height: 50px;
     position: unset;
     margin-bottom: 50px;
+  }
+
+  #iconBtn {
+    color: black;
+  }
+  .iconRefs a:link, .iconRefs a:visited {
+    color: unset;
+  }
+
+  .iconRefs {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 35px;
+    width: 20%;
+    color: black;
   }
 
 }
