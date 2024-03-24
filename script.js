@@ -95,8 +95,6 @@ function resetGame() {
     childCountFlags()
 }
 
-resetGame()
-gameWinMsg()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
