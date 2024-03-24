@@ -22,6 +22,8 @@ const steven = document.querySelector('#child')
 const mikeW = document.querySelector('#mikeW')
 const speech = document.querySelector('#speech')
 const joke = document.querySelector('#joke')
+const iconBtn = document.querySelector('#iconBtn')
+const iconRefs = document.querySelector('.iconRefs')
 const jokeArray = {
     0: {
         setup: "What do you call a dance party of giraffes in the middle of the street?",
@@ -64,6 +66,7 @@ let jokeOfThePlay
 flagBtn.addEventListener('click', toggleFlagging)
 resetButton.addEventListener('click', resetGame)
 initStart.addEventListener('click', resetGame)
+iconBtn.addEventListener('click', iconRefReveal)
 
 /* --- FUNCTIONS --- */
 // helpInst.style.display = 'none';
@@ -93,6 +96,7 @@ function resetGame() {
 }
 
 resetGame()
+gameWinMsg()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -323,4 +327,11 @@ function getJokeOfThePlay() {
 
 function sayPunchLine() {
     joke.textContent = jokeArray[jokeOfThePlay].punch
+}
+
+function iconRefReveal() {
+    const listOfClasses = Array.from(iconRefs.classList)
+    listOfClasses.includes('hide') ? 
+        iconRefs.classList.remove('hide') :
+        iconRefs.classList.add('hide')
 }

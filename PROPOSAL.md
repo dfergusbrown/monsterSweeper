@@ -30,15 +30,7 @@ This project is a minesweeper variation via the world of Monsters Inc.  The play
 - As a player, I would like to enter in different grid dimensions to play a custom game
 - mobile friendly
 
-#### Notionboard Template
-Notionboard template for building projects ( You can use this for any project )
-https://www.notion.so/GA-Unit-3-Tunr-Lab-da2c82fafd4e4a7aa654676732db9ee3
-
 #### Timeline - Daily Accountability
-Example of a Timeline to keep organized and on task for hitting goals every single day you’re on the sprint for your project.
-
-Create your own table using this markdown table generator website:
-https://www.tablesgenerator.com/markdown_tables
 
 | Day        |   | Task                               | Blockers | Notes/ Thoughts |
 |------------|---|------------------------------------|----------|-----------------|
