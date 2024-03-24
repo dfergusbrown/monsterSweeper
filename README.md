@@ -71,16 +71,8 @@
 
 <a target="_blank" href="https://icons8.com/icon/R8s6gQ1oAQPH/police-car-light">Police Car Light</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
-- **Next Steps**: Planned future enhancements (icebox items).
-- Your **`README.md`** file must be grammatically correct and free of spelling errors.
-
-
-
-
-
-
-
-
-
-
-
+- **Next Steps**: 
+    1. Add more animations, visuals, and extras
+        - render doors one by one and slide in
+        - larger game win celebration
+        - game sounds
