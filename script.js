@@ -83,7 +83,6 @@ function resetGame() {
     mikeW.classList.add('hide')
     joke.classList.add('hide')
 
-    resetButton.textContent = 'Reset'
     clearBoard()
     renderSquares()
     policeLights.forEach(el => el.classList.add('hide'))
@@ -94,6 +93,7 @@ function resetGame() {
 }
 
 resetGame()
+gameWinMsg()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -195,6 +195,7 @@ function revealSquare(tCell) {
         tCell.dataset.revealed = true
         revealAdjBlanks(tCell)
     }
+    console.log('revealSquare:', gameWinCheck())
     gameWinCheck() ? gameWinMsg() : null
 }
 
@@ -253,7 +254,7 @@ function revealAdjBlanks(tCell) {
         && !fetchElement(row-1, col+1).dataset.revealed) {
             revealSquare(fetchElement(row-1, col+1))
     }
-
+    console.log('revealBlanks: ', gameWinCheck())
     gameWinCheck() ? gameWinMsg() : null
 }
 
@@ -291,7 +292,7 @@ function gameWinCheck() {
     const win = !cellArray.some(el => {
         return !el.dataset.monster && !el.dataset.revealed && !el.dataset.uncovered
     })
-    console.log(win)
+    // console.log(win)
     return win
 }
 

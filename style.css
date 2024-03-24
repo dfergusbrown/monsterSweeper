@@ -45,6 +45,10 @@
   font-size: 11vmin;
 }
 
+#welcomeAgent p{
+  font-size: 2vmin;
+}
+
 .policeLight {
   margin-left: 40px;
 }
@@ -93,18 +97,31 @@
   z-index: 1;
   font-family: VTKS SMASH Regular;
   font-size: 4em;
-  animation: flyAcross 1s linear 0s infinite;
+  animation: flyAcross 1s linear 0s 1;
 }
 
 @keyframes flyAcross {
   from {transform: translate(300px);}
-  to {transform: translate(-300px);}
+  to {transform: translate(0);}
 }
 
 #mikeW {
   height: 100px;
   position: relative;
   margin-right: 10px;
+}
+#mikeW:hover {
+  cursor: pointer;
+  transform: translateY(3px);
+}
+#mikeW:active {
+  transform: translateY(6px);
+}
+#clickMe {
+  margin: 0px;
+  margin-left: 20px;
+  font-family: Tippa;
+  font-size: .5em;
 }
 #speech {
   height: 50px;
@@ -160,10 +177,6 @@
   'opsz' 24
 }
 
-.hide {
-  display: none;
-}
-
 #cautionTape {
   height: clamp(10px, 2vmin, 20px);
   z-index: 1;
@@ -177,7 +190,6 @@
 .cdaAgent:hover {
   cursor: pointer;
   transform: translateY(3px);
-  background-color: rgba(0, 0, 0,0.1);
 }
 .cdaAgent:active {
   transform: translateY(5px);
@@ -217,7 +229,11 @@
   padding: 5px 10px;
   margin: 5px 10px;
   font-family: Tippa;
-  height: fit-content;
+  height: auto;
+  width: fit-content;
+}
+#flagButton span {
+  height: 10vmin;
 }
 
 #play-reset {
@@ -239,6 +255,10 @@
 
 #instructions {
     display: none;
+}
+
+.hide {
+  display: none;
 }
 
 /* WEB FONT */
@@ -283,7 +303,7 @@
     height: 50px;
   }
   #flagButton span {
-    font-size: 35px;
+    font-size: 5vmin;
   }
 
   #swat1{
@@ -315,13 +335,14 @@
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 0.7fr 1.3fr 1.6fr;  
       grid-template-areas: 
-        "title title title"
+        "title title msgArea"
         "playArea playArea infobar"
         "playArea playArea infobar";
   }
   
   .title h2{
     font-size: clamp(65px, 70px, 72px);
+    text-align: right;
   }
 
   .playArea {
@@ -360,6 +381,12 @@
   .cell {
     width: 8vmin;
     max-width: 80px;
+  }
+
+  #speech {
+    height: 50px;
+    position: unset;
+    margin-bottom: 50px;
   }
 
 }
