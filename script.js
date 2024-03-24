@@ -93,7 +93,6 @@ function resetGame() {
 }
 
 resetGame()
-gameWinMsg()
 function renderSquares() {
     // Create gridArray
     for (let row = 0; row < 9; row++) {
@@ -150,6 +149,7 @@ function clearBoard() {
     while (gameGrid.firstChild) {
         gameGrid.removeChild(gameGrid.firstChild)
     }
+    cellArray = []
 }
 
 function checkAdjacentSquares(row, col) {
@@ -179,7 +179,9 @@ function childCountFlags() {
 
 function selectSquare(event) {
     const tCell = this
-    flagging ? flagSquare(tCell) : revealSquare(tCell)
+    flagging ? flagSquare(tCell) : 
+        tCell.dataset.flagged === 'true' ? null : 
+            revealSquare(tCell)
 }
 
 function revealSquare(tCell) {
@@ -190,18 +192,18 @@ function revealSquare(tCell) {
         gameOver()
     } else if (tCell.dataset.number) {
         tCell.textContent = tCell.dataset.number
-        tCell.dataset.uncovered = true
+        tCell.dataset.uncovered = 'true'
     } else {
-        tCell.dataset.revealed = true
+        tCell.dataset.revealed = 'true'
         revealAdjBlanks(tCell)
     }
-    console.log('revealSquare:', gameWinCheck())
+    // console.log('revealSquare:', gameWinCheck())
     gameWinCheck() ? gameWinMsg() : null
 }
 
 function insertChildSq(tCell) {
     const child = steven.cloneNode()
-    child.style.display = 'block'
+    child.classList.remove('hide')
     tCell.appendChild(child)
 }
 
@@ -254,7 +256,7 @@ function revealAdjBlanks(tCell) {
         && !fetchElement(row-1, col+1).dataset.revealed) {
             revealSquare(fetchElement(row-1, col+1))
     }
-    console.log('revealBlanks: ', gameWinCheck())
+    // console.log('revealBlanks: ', gameWinCheck())
     gameWinCheck() ? gameWinMsg() : null
 }
 
@@ -292,7 +294,12 @@ function gameWinCheck() {
     const win = !cellArray.some(el => {
         return !el.dataset.monster && !el.dataset.revealed && !el.dataset.uncovered
     })
-    // console.log(win)
+    const findIssue = cellArray.filter(el => {
+        return !el.dataset.monster && !el.dataset.revealed && !el.dataset.uncovered
+
+    })
+    console.log(win)
+    console.log(findIssue)
     return win
 }
 
@@ -304,6 +311,10 @@ function gameWinMsg() {
     console.log('joke number', jokeOfThePlay)
     joke.textContent = jokeArray[jokeOfThePlay].setup
     mikeW.addEventListener('click', sayPunchLine)
+
+    for (let i = 0; i < gameGrid.childNodes.length; i++) {
+        gameGrid.childNodes[i].removeEventListener('click', selectSquare)
+    }
 }
 
 function getJokeOfThePlay() {

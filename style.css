@@ -318,7 +318,7 @@
 
   @keyframes flyAcross {
     from {transform: translate(500px);}
-    to {transform: translate(-500px);}
+    to {transform: translate(0);}
   }
 
   .break-wrapper {
