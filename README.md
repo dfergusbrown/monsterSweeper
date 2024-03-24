@@ -44,6 +44,8 @@
     - created function to generate numbered squares (counting adjacent mine squares)
 3. Tuesday
     - created function to cascade and reveal adjacent blank squares created (when player clicks on a blank square, they should have adjacent blank squares revealed and one row(i.e. layer) of numbered squares)
+    **RECURSIVE FUNCTIONS**
+    Recursive functions are functions that call themselves until a condition is met.  In this project, the revealAdjBlanks function is recursive because it calls its parent function, 'revealSquares', which could, in turn, call revealAdjBlanks again *until* there are no more unrevealed, adjacent, blank squares.
     - updated cascade function to include diagonally adjacent squares
     - built the ability to flag a square and to toggle that function on and off
         - a lot of troubleshooting was needed for this.  I discovered that the .dataset property does not read booleans once they are set.  They become strings. so dataset.flagged = true had to be changed to dataset.flagged = 'true' for this to work
