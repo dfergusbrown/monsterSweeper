@@ -1,5 +1,4 @@
 /* --- CONSTANTS --- */
-// const helpBtn = document.querySelector('#helpButton')
 const container = document.querySelector('.container')
 const gameGrid = document.querySelector('.doorGrid')
 const doorTemp = document.querySelector('#door1')
@@ -7,7 +6,6 @@ const flagBtn = document.querySelector('#flagButton')
 const flagStyle = document.querySelector('.material-symbols-outlined')
 const flagTemplate = document.querySelector('#flag')
 const resetButton = document.querySelector('#play-reset')
-const policeLights = document.querySelectorAll('.policeLight')
 const welcomeAgent = document.querySelector('#welcomeAgent')
 const cdaAgent = document.querySelector('.cdaAgent')
 const swatTeam = document.querySelectorAll('.swat')
@@ -80,7 +78,6 @@ function resetGame() {
 
     clearBoard()
     renderSquares()
-    policeLights.forEach(el => el.classList.add('hide'))
     swatTeam.forEach(el => el.classList.add('hide'))
     alert2319.classList.add('hide')
     flagsDown = 0
@@ -202,7 +199,6 @@ function gameOver() {
     for (let i = 0; i < gameGrid.childNodes.length; i++) {
         gameGrid.childNodes[i].removeEventListener('click', selectSquare)
     }
-    policeLights.forEach(el => el.classList.remove('hide')) 
     swatTeam.forEach(el => el.classList.remove('hide'))
     alert2319.classList.remove('hide')
 }

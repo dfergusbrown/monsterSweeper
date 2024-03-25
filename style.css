@@ -49,10 +49,6 @@
   font-size: 2vmin;
 }
 
-.policeLight {
-  margin-left: 40px;
-}
-
 .msgArea {
   grid-area: msgArea;
   background-image: url("./images/concrete.jpeg");
@@ -320,9 +316,7 @@
   #swat1{
     height: 100px;
   }
-  .policeLight {
-    margin-left: 150px;
-  }
+
   #alert2319 {
     font-size: 6em;
   }
@@ -418,6 +412,10 @@
     margin-bottom: 35px;
     width: 20%;
     color: black;
+  }
+
+  #alert2319 {
+    font-size: 8em;
   }
 
 }
